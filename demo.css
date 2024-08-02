@@ -1,0 +1,462 @@
+/* Copyright © 2024 Jose Israel Castro. All rights reserved. */
+@font-face {
+    font-family: 'Custom';
+    src: url('FjallaOne-Regular.ttf') format('truetype');
+}
+
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUpFromBelow {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+body {
+    font-family: 'Custom', sans-serif;
+    background-image: linear-gradient(black, #00008B, #580d6f, black);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    transition: top 0.3s ease-in-out;
+}
+
+#navbar.hidden {
+    top: -80px;
+}
+
+.navbar a {
+    justify-content: center;
+    width: 15vh;
+    position: relative;
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.navbar a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background-color: #1F51FF;
+    transition: width 0.2s ease;
+}
+
+.navbar a:hover::before {
+    width: 100%;
+}
+
+.profile {
+    border: solid white 7px;
+    width: 35vh;
+    height: auto;
+    border-radius: 50%;
+    position: relative;
+}
+
+.profile.active {
+    opacity: 1;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.home {
+    color: #fff;
+    text-align: center;
+    padding: 90px 0;
+    height: 100%;
+}
+
+header h1 {
+    font-weight: bold;
+    padding-top: 10px;
+    font-size: 7vh;
+    color: white;
+}
+
+.title {
+    font-size: 3vh;
+}
+
+.quote {
+    font-size: 4vh;
+    padding-top: 70px;
+    font-style: italic;
+}
+
+.aboutme {
+    padding-top: 70px;
+    opacity: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+h2 {
+    font-size: 4.5vh;
+    margin-bottom: 40px;
+    color: white;
+}
+
+.pi-sks-edu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 12px;
+}
+
+.pirect,
+.skillsrect,
+.edurect,
+.recrect {
+    width: 30vh;
+    min-width: 0;
+    background-color: white;
+    opacity: 0.35;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 100px 60px;
+    margin-bottom: 120px;
+    box-sizing: border-box;
+    transform: scale(1.4);
+    vertical-align: middle;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.pirect:hover,
+.skillsrect:hover,
+.edurect:hover,
+.recrect:hover {
+    transform: scale(1.6);
+}
+
+.pirect *,
+.skillsrect *,
+.edurect *,
+.recrect * {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.pirect:hover *:not(h3),
+.skillsrect:hover *:not(h3),
+.edurect:hover *:not(h3),
+.recrect:hover *:not(h3) {
+    opacity: 1;
+}
+
+.pi-sks-edu ul {
+    padding-left: 20px;
+}
+
+.pi-sks-edu h3,
+.pi-sks-edu p {
+    text-align: center;
+}
+
+.pi-sks-edu ul,
+.pi-sks-edu h3,
+.pi-sks-edu p {
+    color: black;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.pirect:hover ul,
+.skillsrect:hover ul,
+.edurect:hover ul,
+.recrect:hover ul,
+.pirect:hover h3,
+.skillsrect:hover h3,
+.edurect:hover h3,
+.recrect:hover h3,
+.pirect:hover p,
+.skillsrect:hover p,
+.edurect:hover p,
+.recrect:hover p {
+    opacity: 1;
+}
+
+.contact h2 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.contact h3 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.contact-item img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.contact-item a {
+    text-decoration: none;
+    color: white;
+    margin-right: 10px;
+    display: inline-block;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.contact-item a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: #901ed2;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    transition: width 0.2s ease;
+}
+
+.contact-item a:hover {
+    color: #901ed2;
+}
+
+.contact-item a:hover::after {
+    width: 100%;
+}
+
+.footer {
+    margin-top: 1px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    font-weight: lighter;
+    height: 80px;
+    color: white;
+    background-color: black;
+    display: flex;
+}
+
+.homepage {
+    padding-top: 65px;
+    opacity: 0;
+}
+
+.homepage.active {
+    animation-name: slideInFromTop;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    opacity: 1;
+}
+
+.aboutmepage {
+    opacity: 0;
+    margin-bottom: 100px;
+}
+
+.aboutmepage.active {
+    animation-name: slideUpFromBelow;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    opacity: 1;
+}
+
+.contactpage {
+    height: 600px;
+}
+
+.contact {
+    opacity: 0;
+    height: 600px;
+    width: 500px;
+    border-radius: 40px;
+    background-color: rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 10px;
+    color: rgba(255, 255, 255, 1);
+    transition: opacity 0.5s ease;
+    margin: 0 auto;
+}
+
+.contact.active {
+    animation-name: slideInFromLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    opacity: 1;
+}
+
+/* Fix for About Me Page */
+@media only screen and (max-width: 1279px) {
+    .aboutmepage {
+        opacity: 1;
+        margin-bottom: 20px;
+    }
+}
+
+
+/* Mobile View Onwards Hehe */
+@media only screen and (max-width: 480px) {
+    .navbar {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .navbar a {
+        flex: 0 0 auto;
+        text-align: center;
+    }
+
+    .profile {
+        width: 35vh;
+        height: auto;
+        border-radius: 50%;
+    }
+
+    .home {
+        padding: 40px 0;
+        height: auto;
+    }
+
+    header h1 {
+        font-size: 8vh;
+    }
+
+    .title {
+        font-size: 3.5vh;
+    }
+
+    .quote {
+        font-size: 3.5vh;
+        padding-top: 60px;
+    }
+
+    h2 {
+        font-size: 3.5vh;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .pirect,
+    .skillsrect,
+    .edurect,
+    .recrect {
+        width: 95%;
+        min-width: 0;
+        background-color: white;
+        opacity: 0.35;
+        border-radius: 20px;
+        padding: 20px;
+        margin: 10px auto;
+        box-sizing: border-box;
+        transform: scale(1);
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        display: block;
+    }
+
+    .pirect:hover,
+    .skillsrect:hover,
+    .edurect:hover,
+    .recrect:hover {
+        transform: scale(1);
+    }
+
+    .aboutmepage {
+        opacity: 1;
+        margin-bottom: 20px;
+    }
+
+    .contact {
+        width: 90%;
+        padding: 10px;
+        margin: 0 auto;
+        border-radius: 20px;
+        background-color: rgba(0, 0, 0, 0.2);
+        text-align: center;
+        color: rgba(255, 255, 255, 1);
+    }
+
+    .contact-item {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .contact-item img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        border-radius: 50%;
+        vertical-align: middle;
+    }
+
+    .footer {
+        height: 40px;
+        font-size: 10px;
+    }
+}
+/* Copyright © 2024 Jose Israel Castro. All rights reserved. */
